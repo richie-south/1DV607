@@ -1,1 +1,6 @@
 c:\users\rs222kn\documents\visual studio 2013\Projects\boatClub\boatClub\bin\Debug\boatClub.exe.config
+C:\Users\rs222kn\documents\visual studio 2013\Projects\boatClub\boatClub\bin\Debug\boatClub.exe
+C:\Users\rs222kn\documents\visual studio 2013\Projects\boatClub\boatClub\bin\Debug\boatClub.pdb
+C:\Users\rs222kn\documents\visual studio 2013\Projects\boatClub\boatClub\obj\Debug\boatClub.csprojResolveAssemblyReference.cache
+C:\Users\rs222kn\documents\visual studio 2013\Projects\boatClub\boatClub\obj\Debug\boatClub.exe
+C:\Users\rs222kn\documents\visual studio 2013\Projects\boatClub\boatClub\obj\Debug\boatClub.pdb

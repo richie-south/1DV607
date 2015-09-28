@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace boatClub.model
 {
+    [Serializable]
     class Boat
     {
         public enum BoatType

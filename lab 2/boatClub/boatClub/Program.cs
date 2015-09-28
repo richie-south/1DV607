@@ -10,8 +10,13 @@ namespace boatClub
     {
         static void Main(string[] args)
         {
+
             view.ConsoleView c = new view.ConsoleView();
-            c.displayStartMenu();
+            controller.Secretary s = new controller.Secretary(c);
+            
+            s.displayStartMenu();
+            //c.displayStartMenu();
+
         }
     }
 }
