@@ -23,10 +23,21 @@ namespace boatClub.model
         public List<model.Member> loadFile()
         {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-            List<model.Member> members = (List<model.Member>)formatter.Deserialize(stream);
-            stream.Close();
+            Stream stream;
+            List<model.Member> members;
 
+            try
+            {
+                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read);
+                members = (List<model.Member>)formatter.Deserialize(stream);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            
+            stream.Close();
             return members;
         }
     }
