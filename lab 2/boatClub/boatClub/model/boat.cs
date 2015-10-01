@@ -19,12 +19,14 @@ namespace boatClub.model
 
         private float _boatLenght;
         private BoatType _BoatType;
+
+        //throws exeptions
         public float BoatLenght
         {
             get { return _boatLenght; } 
-            private set {
+            set {
                 if(value <= 0 || value >= 1000){
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException("Invalid boat length");
                 }
                 _boatLenght = value;
             }
@@ -33,7 +35,10 @@ namespace boatClub.model
         public BoatType BoatTypeProp
         {
             get { return _BoatType; } 
-            private set {
+            set {
+                if(!Enum.IsDefined(typeof(BoatType), value)){
+                    throw new ArgumentException("Båt typen finns inte");
+                }
                 _BoatType = value;
             } 
         }
