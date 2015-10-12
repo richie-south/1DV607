@@ -165,28 +165,6 @@ namespace boatClub.view
             return Console.ReadKey().KeyChar == 48;
         }
 
-        public bool ExitProgramPress()
-        {
-            return Console.ReadKey().KeyChar == 4;
-        }
-
-        public int memberMenuKeyPress()
-        {
-            switch (Console.ReadKey().KeyChar)
-            {
-                case '1':
-                    return 1;
-                case '2':
-                    return 2;
-                case '3':
-                    return 3;
-                case '4':
-                    return 4;
-                default:
-                    return 0;
-            }
-        }
-
         public void displayBoatLenghtInstruktions()
         {
             Console.WriteLine("Input boat length");

@@ -44,6 +44,7 @@
     <Compile Include="controller\Secretary.cs" />
     <Compile Include="model\Boat.cs" />
     <Compile Include="model\boatClubDAL.cs" />
+    <Compile Include="model\GenerateID.cs" />
     <Compile Include="model\Member.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

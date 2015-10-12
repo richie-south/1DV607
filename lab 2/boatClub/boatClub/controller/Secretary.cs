@@ -10,9 +10,10 @@ namespace boatClub.controller
     {
         //List with members
         //consturctor creating instance of view
-        private List<model.Member> members = new List<model.Member>();
+        //private List<model.Member> members = new List<model.Member>();
         private view.ConsoleView consoleView;
         private model.boatClubDAL DAL = new model.boatClubDAL();
+        private model.GenerateID generateId = new model.GenerateID();
         public Secretary(view.ConsoleView c)
         {
             consoleView = c;
@@ -20,13 +21,8 @@ namespace boatClub.controller
         }
 
         //takeing the saved members in the file and pushing them to the array
-        public void addMembersFromFile(){
-
-            var membersFromFile = DAL.loadFile();
-            foreach (var member in membersFromFile) 
-            {
-                members.Add(member);
-            }
+        private void addMembersFromFile(){
+            DAL.loadFile();
         }
 
         //showing the first menu (Add new member, detaildlist, complatlist)
@@ -50,10 +46,10 @@ namespace boatClub.controller
         }
 
         //showing members and their boats
-        public void detaildList()
+        private void detaildList()
         {
             consoleView.clear();
-            foreach (var member in members)
+            foreach (var member in DAL.Members)
             {
                 consoleView.displaySelectedUser(member.Name, member.Id, member.SocialSecurityNumber);
                 showUserBoats(member);
@@ -65,29 +61,10 @@ namespace boatClub.controller
             }
         }
 
-        //creating a randomnr fot the uniquenr
-        public int randomNumber()
-        {
-            Random ran = new Random();
-            return ran.Next(int.MaxValue);
-        }
-        //checking if the uniquenr alredy exist in memberslist
-        public bool isUniqeSame(int uniqeId)
-        {
-            foreach (var m in members)
-            {
-                if (uniqeId == m.Id)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         //creating new member, calling to display instructions
         //try-catch for exeptions with the name and securitynumber
         //saving the list to the bin-file
-        public void addNewMember()
+        private void addNewMember()
         {
             consoleView.clear();
             consoleView.displayNameInstruktions();
@@ -96,34 +73,26 @@ namespace boatClub.controller
             consoleView.displaySocialSecurityNumberInstruktions();
             string SecurityNumber = consoleView.getInput();
 
-            int uniqeId = 0;
-            do
-            {
-                uniqeId = randomNumber();    
-            } while (isUniqeSame(uniqeId));
-
+            int uniqeId = generateId.newId(DAL.Members);
             try
             {
                 model.Member member = new model.Member(name, SecurityNumber, uniqeId);
-                members.Add(member);
+                DAL.addMember(member);
             }
             catch (Exception e)
             {
                 consoleView.displayExeptions(e.ToString());
             }
-            
-            
-            DAL.save(members);
         }
         
         //user can select a member and see more information
         //showing all members and nr of boats they own
-        public void compactList()
+        private void compactList()
         {
             consoleView.clear();
             
             int i = 0;
-            foreach (var member in members)
+            foreach (var member in DAL.Members)
             {
                 
                 consoleView.displayCompactList(i, member.Name, member.Id, member.Boats.Count);
@@ -155,17 +124,12 @@ namespace boatClub.controller
 
         //when specific member is choosen this members information is shown
         //a membermenu is shown to offer the user to: change/delete member/boats and add new boat to the member
-        public void specificUser(int userLocation)
+        private void specificUser(int memberLocation)
         {
-            if (members.Count <= 0)
-            {
-                throw new IndexOutOfRangeException("no user in list");
-            }
-            
-            var member = members.First();
+            var member = DAL.Members.First();
             try
             {
-               member = members.ElementAt(userLocation);
+                member = DAL.getSpecificMember(memberLocation);
             }
             catch (Exception e)
             {
@@ -174,29 +138,29 @@ namespace boatClub.controller
             consoleView.clear();
             consoleView.displaySelectedUser(member.Name, member.Id, member.SocialSecurityNumber);
             showUserBoats(member);
-            displayMemberMenu(member);
+            displayMemberMenu(memberLocation);
         }
 
         //the menu that offers to the user to: change/delete member/boats and add new boat to the member
-        public void displayMemberMenu(model.Member member)
+        private void displayMemberMenu(int memberLocation)
         {
             consoleView.displayMemberMenu();
             switch (consoleView.getMenuKeyPress())
             {
                 case 1:
-                    deleteMember(member);
+                    deleteMember(memberLocation);
                     break;
                 case 2:
-                    updateMember(member);
+                    updateMember(memberLocation);
                     break;
                 case 3:
-                    addNewBoat(member);
+                    addNewBoat(memberLocation);
                     break;
                 case 4:
-                    deleteMemberBoat(member);
+                    deleteMemberBoat(memberLocation);
                     break;
                 case 5:
-                    updateBoat(member);
+                    updateBoat(memberLocation);
                     break;
                 case 6:
                     displayStartMenu();
@@ -206,16 +170,16 @@ namespace boatClub.controller
 
         //updating the boat, showing the instructions
         //letting the user decide which boat to update
-        public void updateBoat(model.Member member)
+        private void updateBoat(int memberLocation)
         {
             consoleView.clear();
-            showUserBoats(member);
+            showUserBoats(DAL.getSpecificMember(memberLocation));
             consoleView.displayBoatUpdateInstructions();
-            int listId;
+            int boatLocation;
             try
             {
-                listId = int.Parse(consoleView.getInput());
-                updateBoatMenu(member.Boats.ElementAt(listId));
+                boatLocation = int.Parse(consoleView.getInput());
+                updateBoatMenu(memberLocation, boatLocation);
             }
             catch (Exception e)
             {
@@ -224,22 +188,22 @@ namespace boatClub.controller
         }
 
         //Menu letting the user choose what they want to change
-        public void updateBoatMenu(model.Boat boat)
+        private void updateBoatMenu(int memberLocation, int boatLocation)
         {
             consoleView.displayBoatChangeMenu();
             switch (consoleView.boatChangeMenuKeyPress())
             {
                 case 1:
-                    updateBoatLength(boat);
+                    updateBoatLength(memberLocation, boatLocation);
                     break;
                 case 2:
-                    updateBoatType(boat);
+                    updateBoatType(memberLocation, boatLocation);
                     break;
             }
         }
 
         //changing the boat type and saving new information
-        public void updateBoatType(model.Boat boat)
+        private void updateBoatType(int memberLocation, int boatLocation)
         {
             consoleView.clear();
             consoleView.displayBoatTypeInstruktions();
@@ -248,8 +212,7 @@ namespace boatClub.controller
             {
                 int value = int.Parse(consoleView.getInput());
                 var boatType = Enum.ToObject(typeof(model.Boat.BoatType), value);
-                boat.BoatTypeProp = (model.Boat.BoatType)boatType;
-                DAL.save(members);
+                DAL.updateBoatType(memberLocation, boatLocation, (model.Boat.BoatType)boatType);
             }
             catch (Exception e)
             {
@@ -257,14 +220,15 @@ namespace boatClub.controller
             }
         }
         //changing the boat length and saving new information
-        public void updateBoatLength(model.Boat boat)
+        private void updateBoatLength(int memberLocation, int boatLocation)
         {
             consoleView.clear();
             consoleView.displayBoatLenghtInstruktions();
+            float boatLength;
             try
-            {
-                boat.BoatLenght = float.Parse(consoleView.getInput());
-                DAL.save(members);
+            {   
+                boatLength = float.Parse(consoleView.getInput());
+                DAL.updateBoatLength(memberLocation, boatLocation, boatLength);
             }
             catch (Exception e)
             {
@@ -273,36 +237,35 @@ namespace boatClub.controller
         }
 
         //deleting a member from list and saving new information
-        public void deleteMember(model.Member member)
+        private void deleteMember(int memberLocation)
         {
-            members.Remove(member);
-            DAL.save(members);
+            DAL.removeMember(memberLocation);
         }
 
         //updating a member and lettign the user choose that to change
-        public void updateMember(model.Member member) {
+        private void updateMember(int memberLocation)
+        {
             consoleView.clear();
             consoleView.displayMemberChangeMenu();
             switch (consoleView.memberChangeMenuKeyPress())
             {
                 case 1:
-                    updateMemberName(member);
+                    updateMemberName(memberLocation);
                     break;
                 case 2:
-                    updateMemberSocialSecurityNumber(member);
+                    updateMemberSocialSecurityNumber(memberLocation);
                     break;
             }
         }
 
         //updating the member name and saving new information
-        public void updateMemberName(model.Member member)
+        private void updateMemberName(int memberLocation)
         {
             consoleView.clear();
             consoleView.displayNameInstruktions();
             try
             {
-                member.Name = consoleView.getInput();
-                DAL.save(members);
+                DAL.updateMemberName(memberLocation, consoleView.getInput());
             }
             catch (Exception e)
             {
@@ -311,14 +274,13 @@ namespace boatClub.controller
         }
 
         //updating members secutirynumber and saving new information
-        public void updateMemberSocialSecurityNumber(model.Member member)
+        private void updateMemberSocialSecurityNumber(int memberLocation)
         {
             consoleView.clear();
             consoleView.displaySocialSecurityNumberInstruktions();
             try
             {
-                member.SocialSecurityNumber = consoleView.getInput();
-                DAL.save(members);
+                DAL.updateMemberSSN(memberLocation, consoleView.getInput());
             }
             catch (Exception e)
             {
@@ -327,19 +289,18 @@ namespace boatClub.controller
         }
 
         //deleting a member and saving the new members
-        public void deleteMemberBoat(model.Member member)
+        private void deleteMemberBoat(int memberLocation)
         {
             consoleView.clear();
-            showUserBoats(member);
+            showUserBoats(DAL.getSpecificMember(memberLocation));
             consoleView.displayDeleteBoatInstruktions();
             int listId = int.Parse(consoleView.getInput());
-            member.deleteBoat(listId);
-            DAL.save(members);
+            DAL.removeMemberBoat(memberLocation, listId);
             
         }
 
         //adding a member and saving the new members
-        public void addNewBoat(model.Member member)
+        private void addNewBoat(int memberLocation)
         {
             consoleView.clear();
             consoleView.displayBoatLenghtInstruktions();
@@ -354,18 +315,16 @@ namespace boatClub.controller
                 int value = int.Parse(consoleView.getInput());
                 var boatType = Enum.ToObject(typeof(model.Boat.BoatType), value);
                 model.Boat boat = new model.Boat((model.Boat.BoatType)boatType, length);
-                member.addBoat(boat);
+                DAL.addBoatToMember(memberLocation, boat);
             }
             catch (Exception e)
             {
                 consoleView.displayExeptions(e.ToString());
             }
-
-            DAL.save(members);
         }
 
         //showing all boatstypes
-        public void showBoatType()
+        private void showBoatType()
         {
             int id = 0;
             foreach (var boat in Enum.GetValues(typeof(model.Boat.BoatType)))
@@ -376,7 +335,7 @@ namespace boatClub.controller
         }
 
         //show all botas that belongs to this member
-        public void showUserBoats(model.Member member)
+        private void showUserBoats(model.Member member)
         {
             int id = 0;
             foreach (var boat in member.Boats)
