@@ -21,9 +21,9 @@ namespace BlackJack.controller
         public bool Play()
         {
             a_view.DisplayWelcomeMessage();
-            
             a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
             a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
+            
 
             if (a_game.IsGameOver())
             {
@@ -49,8 +49,11 @@ namespace BlackJack.controller
 
         public void cardDrawn(model.Card c)
         {
-            Thread.Sleep(500);
             a_view.DisplayCard(c);
+            
+            
+            Thread.Sleep(500);
+            
         }
     }
 }

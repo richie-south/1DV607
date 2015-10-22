@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="acdc0035-52b7-4186-ad24-770800e81d11"
+  name="controller" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="a6917e36-d961-4204-9aba-91bb2eff919b"
+        name="PlayGame"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="7d4e1d2d-a935-4799-80be-6f9eb2a343ab">
+            <interfaceMoniker
+              Id="2dd0a035-363b-4a98-81fc-496e30fe36cd"
+              LastKnownName="IObserver"
+              LastKnownLocation="Package1_0950.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="171cb9d3-1ef1-4ad2-913f-6ea7618403bd"
+            isDerived="false"
+            sourceEndRoleName="PlayGame"
+            targetEndRoleName="IView"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="daa2b7a8-1024-4de0-8428-0008d3ffa08b"
+              LastKnownName="IView"
+              LastKnownLocation="Package_0950.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8bf2a27c-55f4-43d1-8ec0-da5e3130add2"
+                  name="PlayGame"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="cc385940-dddb-43ed-b754-addd52d71fec"
+                  name="IView"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="c8a46007-0ae0-4a7f-8df4-9eb5a3ba492e"
+            isDerived="false"
+            sourceEndRoleName="PlayGame"
+            targetEndRoleName="Game"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="08739ce8-677c-41a8-b0cf-e6796231e3a0"
+              LastKnownName="Game"
+              LastKnownLocation="Package1_0950.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c057985c-73a4-4aff-a596-4b902e749ece"
+                  name="PlayGame"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a71a118a-874f-4e8f-84ff-1e02fc5b3d90"
+                  name="Game"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedOperationsInternal>
+          <operation
+            Id="3ab38bdd-cd02-4ad7-bd1f-fd60c617d1f1"
+            name="cardDrawn"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ff9155de-4273-45ec-b2e7-04b196605226"
+                  name="c"
+                  direction="In">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="ffd9739e-9de4-4519-a43f-f2d854a762c4"
+                      LastKnownName="Card"
+                      LastKnownLocation="Package1_1426.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
