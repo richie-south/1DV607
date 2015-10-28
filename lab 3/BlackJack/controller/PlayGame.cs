@@ -47,10 +47,11 @@ namespace BlackJack.controller
             return input != view.GameControls.quit;
         }
 
-        public void cardDrawn(model.Card c)
+        public void cardDrawn()
         {
-            a_view.DisplayCard(c);
-            
+            a_view.DisplayWelcomeMessage();
+            a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
+            a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
             
             Thread.Sleep(500);
             

@@ -225,6 +225,12 @@
                       </stereotypeInstance>
                     </appliedStereotypesInternal>
                     <elementDefinition Id="2ca6cf9b-e83b-422f-839b-c615f150f0bf" />
+                    <suppliersInternal>
+                      <dependency Id="9bc5474d-55ff-45d5-a5ab-2904bee10f34">
+                        <classMoniker Id="b333af77-6fd9-498c-a2ff-df1466a5a413" LastKnownName="Dealer" />
+                        <elementDefinition Id="4c643a1b-a253-4a5b-afee-faaffa30f384" />
+                      </dependency>
+                    </suppliersInternal>
                     <ownedOperations>
                       <operation Id="c7ed06df-20e0-4c8a-939b-8e81d5b1e0af" name="isWinner" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
                         <referencesInternal>
@@ -773,12 +779,6 @@
           <packageHasNamedElement>
             <class Id="b333af77-6fd9-498c-a2ff-df1466a5a413" name="Dealer" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="aaf1cdbb-b246-4674-8bd7-c2ffcaeb6374" />
-              <suppliersInternal>
-                <dependency Id="0bd82a5c-7bde-4627-8e84-939b4bbfd003">
-                  <classMoniker Id="490c330f-5378-4e7f-8a78-6db4fefcbc44" LastKnownName="RulesFactory" />
-                  <elementDefinition Id="ebcbd2dc-bbcb-4c6a-9cba-c8de4f9118c9" />
-                </dependency>
-              </suppliersInternal>
               <generalsInternal>
                 <generalization Id="acd3f513-be4d-4310-b44c-223659fd2449" isSubstitutable="false">
                   <classMoniker Id="5008487d-acb2-4d99-b615-b610fd487a16" LastKnownName="Player" />
@@ -926,6 +926,22 @@
                   </relationshipOwnedElementsInternal>
                   <elementDefinition Id="9f8efb84-86a1-4f18-94b8-2623de11aa12" />
                 </association>
+                <association Id="1d0f4b7d-9214-4625-9121-3e88ecd44dd4" isDerived="false" sourceEndRoleName="Dealer" targetEndRoleName="RulesFactory" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="490c330f-5378-4e7f-8a78-6db4fefcbc44" LastKnownName="RulesFactory" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="3f861e45-f4d9-49ac-a77b-0143dc4b976c" name="Dealer" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="c117ab10-6a31-442a-a2a9-4d59d9282fcc" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="5f3e0753-6815-4e8a-bdf8-844982e7435e" name="RulesFactory" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="c7ce1038-4791-43af-a8aa-4ade6ef5b118" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="b953a8aa-a091-4b9d-82f4-a50cf38aadfa" />
+                </association>
               </targetEnds>
             </class>
           </packageHasNamedElement>
@@ -1022,6 +1038,10 @@
                 <dependency Id="55693ebd-55df-4cd5-a40e-e7a890129e23">
                   <interfaceMoniker Id="15e4f8da-ff45-40a1-98a4-8efe106cf09c" LastKnownName="IObserver" />
                   <elementDefinition Id="e289c634-7e55-4f95-9149-15e9894abd12" />
+                </dependency>
+                <dependency Id="c093b3e5-1ec0-42f4-af97-fe6fd0d19387">
+                  <classMoniker Id="490c330f-5378-4e7f-8a78-6db4fefcbc44" LastKnownName="RulesFactory" />
+                  <elementDefinition Id="23de2d6f-4a4c-4b48-b785-0a716ad67bfc" />
                 </dependency>
               </suppliersInternal>
               <targetEnds>

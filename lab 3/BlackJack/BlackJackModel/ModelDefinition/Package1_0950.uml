@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="611d0dda-1055-4b6d-bca5-9dad81e292a9"
   name="model" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -25,15 +25,6 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
-        <suppliersInternal>
-          <dependency
-            Id="ebcbd2dc-bbcb-4c6a-9cba-c8de4f9118c9">
-            <classMoniker
-              Id="274aad89-4b81-46c6-a61d-54ff6d7a1d51"
-              LastKnownName="RulesFactory"
-              LastKnownLocation="Package2_0950.uml" />
-          </dependency>
-        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="ac1117b4-835a-4415-975b-8037a0a5954f"
@@ -304,6 +295,45 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="b953a8aa-a091-4b9d-82f4-a50cf38aadfa"
+            isDerived="false"
+            sourceEndRoleName="Dealer"
+            targetEndRoleName="RulesFactory"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="274aad89-4b81-46c6-a61d-54ff6d7a1d51"
+              LastKnownName="RulesFactory"
+              LastKnownLocation="Package2_0950.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c117ab10-6a31-442a-a2a9-4d59d9282fcc"
+                  name="Dealer"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c7ce1038-4791-43af-a8aa-4ade6ef5b118"
+                  name="RulesFactory"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </class>
     </packageHasNamedElement>
@@ -467,6 +497,13 @@
               Id="2dd0a035-363b-4a98-81fc-496e30fe36cd"
               LastKnownName="IObserver"
               LastKnownLocation="Package1_0950.uml" />
+          </dependency>
+          <dependency
+            Id="23de2d6f-4a4c-4b48-b785-0a716ad67bfc">
+            <classMoniker
+              Id="274aad89-4b81-46c6-a61d-54ff6d7a1d51"
+              LastKnownName="RulesFactory"
+              LastKnownLocation="Package2_0950.uml" />
           </dependency>
         </suppliersInternal>
         <targetEnds>

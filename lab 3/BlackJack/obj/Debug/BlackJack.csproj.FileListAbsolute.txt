@@ -3,3 +3,8 @@ C:\Users\rs222kn\Desktop\blackjack_csharp-master\blackjack_csharp-master\BlackJa
 C:\Users\rs222kn\Desktop\blackjack_csharp-master\blackjack_csharp-master\BlackJack\obj\Debug\BlackJack.csprojResolveAssemblyReference.cache
 C:\Users\rs222kn\Desktop\blackjack_csharp-master\blackjack_csharp-master\BlackJack\obj\Debug\BlackJack.exe
 C:\Users\rs222kn\Desktop\blackjack_csharp-master\blackjack_csharp-master\BlackJack\obj\Debug\BlackJack.pdb
+C:\Users\rs222kn\Desktop\1dv607-master (2)\1dv607-master\lab 3\BlackJack\obj\Debug\BlackJack.exe
+C:\Users\rs222kn\Desktop\1dv607-master (2)\1dv607-master\lab 3\BlackJack\obj\Debug\BlackJack.pdb
+C:\Users\rs222kn\Desktop\1dv607-master (2)\1dv607-master\lab 3\BlackJack\bin\Debug\BlackJack.exe
+C:\Users\rs222kn\Desktop\1dv607-master (2)\1dv607-master\lab 3\BlackJack\bin\Debug\BlackJack.pdb
+C:\Users\rs222kn\Desktop\1dv607-master (2)\1dv607-master\lab 3\BlackJack\obj\Debug\BlackJack.csprojResolveAssemblyReference.cache
